@@ -1,0 +1,18 @@
+md-content.home-controller.ng-cloak(flex, layout, layaout-padding, layout-align="center center")
+  div.login-container
+    h2.logo Lively
+    md-card
+      md-card-content(layout, flex)
+        form(layout=('column'), flex, name="loginForm", novalidate)
+          md-input-container(flex)
+            label メールアドレス
+            input(ng-model="home.account.email", type="email", name="id", required, maxlength="30")
+          md-input-container(flex)
+            label パスワード
+            input(ng-model="home.account.password", type="password", name="password", required, maxlength="20")
+          md-card-actions(layout="row", layout-align="end center")
+            md-button.md-raised.md-accent(type="submit") ログイン
+    div(layout, md-theme="sub")
+      md-button.md-raised.md-warn.btn-google(ng-click=" home.googleLogin()", type="button", flex)
+        i.fa.fa-google
+        span oogleアカウントでログイン

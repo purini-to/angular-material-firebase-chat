@@ -45,7 +45,7 @@ module.exports = function makeWebpackConfig () {
 
     // Output path from the view of the page
     // Uses webpack-dev-server in development
-    publicPath: isProd ? '/' : 'http://localhost:8080/',
+    publicPath: isProd ? '/' : 'http://localhost/',
 
     // Filename for entry points
     // Only adds hash in build mode
@@ -116,6 +116,12 @@ module.exports = function makeWebpackConfig () {
       // Allow loading html through js
       test: /\.html$/,
       loader: 'raw'
+    }, {
+      test: /\.jade$/,
+      loader: "jade"
+    }, {
+      test: /\.styl$/,
+      loader: "style!css!autoprefixer-loader?browsers=last 2 version!stylus"
     }]
   };
 
