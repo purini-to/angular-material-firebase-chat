@@ -1,10 +1,10 @@
 export default function routes($stateProvider) {
   $stateProvider
-    .state('home', {
+    .state('login', {
       url: '/',
-      template: require('./home.jade'),
-      controller: 'HomeController',
-      controllerAs: 'home'
+      template: require('./login.jade'),
+      controller: 'LoginController',
+      controllerAs: 'login',
     });
 }
 

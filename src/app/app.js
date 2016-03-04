@@ -13,9 +13,11 @@ import 'angular-validation-match';
 import 'restangular';
 import 'angular-cookie';
 import 'angularfire';
+import 'angularjs-viewhead';
 
 import routing from './app.config';
-import home from './components/home';
+import login from './components/login';
+import firebase from './services/firebase.service';
 
 const MODULE_NAME = 'app';
 
@@ -30,7 +32,9 @@ angular.module(MODULE_NAME, [
   'ui.router',
   'validation.match',
   'firebase',
-  home
+  'viewhead',
+  login,
+  firebase
 ]).config(routing);
 
 export default MODULE_NAME;
