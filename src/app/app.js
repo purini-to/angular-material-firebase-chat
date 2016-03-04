@@ -1,3 +1,4 @@
+import 'angular-material/angular-material.min.css'
 import 'angular-ui-router-anim-in-out/css/anim-in-out.css';
 import './app.styl';
 
