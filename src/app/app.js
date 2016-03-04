@@ -1,3 +1,4 @@
+import 'angular-ui-router-anim-in-out/css/anim-in-out.css';
 import './app.styl';
 
 import 'lodash';
@@ -13,11 +14,23 @@ import 'angular-validation-match';
 import 'restangular';
 import 'angular-cookie';
 import 'angularfire';
-import 'angularjs-viewhead';
+import 'angular-ui-router-anim-in-out';
 
+// config
 import routing from './app.config';
+import run from './app.run';
+
+// components
 import login from './components/login';
+import chat from './components/chat';
+import channel from './components/channel';
+
+// services
 import firebase from './services/firebase.service';
+
+//models
+import user from './models/user.model';
+import auth from './models/auth.model';
 
 const MODULE_NAME = 'app';
 
@@ -32,9 +45,13 @@ angular.module(MODULE_NAME, [
   'ui.router',
   'validation.match',
   'firebase',
-  'viewhead',
+  'anim-in-out',
   login,
-  firebase
-]).config(routing);
+  chat,
+  channel,
+  firebase,
+  user,
+  auth,
+]).config(routing).run(run);
 
 export default MODULE_NAME;

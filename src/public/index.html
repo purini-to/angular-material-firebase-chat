@@ -6,17 +6,16 @@
   <meta name="robots" content="noindex">
   <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title ng-bind-template="{{viewTitle}} | Lively">Lively</title>
+  <title ng-bind-template="{{pageTitle}} | Lively">Lively</title>
   <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <base href="/">
 </head>
 
 <body class="ng-cloak">
   <section class="view-container">
-    <ui-view class="view"></ui-view>
+    <ui-view class="view anim-in-out anim-fade" data-anim-speed="500" data-anim-sync="true"></ui-view>
   </section>
 </body>
 

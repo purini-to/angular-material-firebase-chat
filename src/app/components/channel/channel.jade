@@ -1,0 +1,20 @@
+md-content.channel-controller.ng-cloak(flex, layout, layaout-padding, layout-align="center")
+  md-toolbar.channel-title.md-whiteframe-10dp.anim-slide-below-fade.md-hue-2
+    .md-toolbar-tools
+      md-button.hide-gt-md.md-icon-button(aria-label="showSideNav", ng-click="channel.toggleSideNavOpen()")
+        md-icon.material-icons menu
+      h2
+        span.channel-prefix #
+        span {{vm.channel.channel.name}}
+      span.flex
+      .tool-bittons
+        md-button.md-icon-button(aria-label="personCount")
+          md-icon person_outline
+        md-button.md-icon-button(aria-label="search")
+          md-icon search
+        md-button.md-icon-button(aria-label="star")
+          md-icon star_border
+        md-button.md-icon-button(aria-label="more")
+          md-icon more_vert
+    md-progress-linear.md-accent(md-mode="indeterminate", ng-show="vm.processing")
+    md-content.md-layout-column.flex

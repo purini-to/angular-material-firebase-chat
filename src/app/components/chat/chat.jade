@@ -1,0 +1,47 @@
+md-content.chat-controller.ng-cloak(flex, layout, layaout-padding)
+  md-sidenav.md-sidenav-left.md-whiteframe-z2.side-nav(md-component-id="sideNav", md-is-locked-open="$mdMedia('gt-md')", x-scrollbar)
+    md-toolbar.profile.anim-slide-right
+      md-menu.flex.md-layout
+        md-button.btn-profile(aria-label="profile", ng-click="chat.openProfileMenu($mdOpenMenu, $event)")
+          img(ng-src="{{chat.user.profileImageURL}}")
+          span {{chat.user.displayName}}
+        md-menu-content(width="4")
+          md-menu-item
+            md-button 
+              md-icon home
+              | ホーム
+          md-menu-item
+            md-button 
+              md-icon accessibility
+              | プロフィール
+          md-divider
+          md-menu-item
+            md-button 
+              md-icon settings
+              | チーム設定
+          md-menu-item
+            md-button(ng-click="main.openDialogInvitation($event)") 
+              md-icon redeem
+              | 招待
+          md-menu-item
+            md-button
+              md-icon power
+              | サービス連携
+          md-divider
+          md-menu-item
+            md-button(ng-click="chat.logout()")
+              md-icon exit_to_app
+              | ログアウト
+    md-content.flex.anim-slide-right(x-scrollbar)
+      md-subheader
+        .md-layout.flex
+          span.header-text チャンネル
+          span.flex
+          md-button.md-icon-button.md-accent(aria-label="channelAdd", ng-click="chat.openDialogNewChannel($event)")
+            md-icon.add-channel add_circle_outline
+      ul.nav-menu
+        li.md-layout(ng-repeat="channel in chat.channel.channels")
+          md-button.flex(ui-sref="channel.messages({channelName: channel.name})", ng-click="chat.close()")
+            span.channel-prefix #
+            {{channel.name}}
+  ui-view.flex.md-layout-column.channel-view
