@@ -3,6 +3,10 @@ export default class ChannelController {
     this.$mdSidenav = $mdSidenav;
     $rootScope.pageTitle = 'Channel';
   }
+
+  toggleSideNavOpen() {
+    return this.$mdSidenav('sideNav').toggle();
+  }
 }
 
 ChannelController.$inject = ['$rootScope', '$mdSidenav', 'firebase', 'user'];
