@@ -5,7 +5,7 @@ export default function routes($stateProvider) {
       controller: 'ChatController',
       controllerAs: 'chat',
       resolve: {
-        "currentAuth": ["firebase", "user", "auth", function (firebase, user, auth) {
+        "currentAuth": ["firebase", "user", "auth", (firebase, user, auth) => {
           if (auth.uid) {
             return user;
           }
@@ -23,6 +23,10 @@ export default function routes($stateProvider) {
             auth.auth.token = data.token;
             auth.auth.accessToken = data.google.accessToken;
           });
+        }],
+        "channels": ["firebase", "channel", (firebase, channel) => {
+          channel.channels = firebase.data.channels();
+          return channel.channels;
         }]
       }
     });

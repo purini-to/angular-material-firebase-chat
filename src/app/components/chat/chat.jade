@@ -22,7 +22,7 @@ md-content.chat-controller.ng-cloak(flex, layout, layaout-padding)
               md-icon settings
               | チーム設定
           md-menu-item
-            md-button(ng-click="main.openDialogInvitation($event)")
+            md-button
               md-icon redeem
               | 招待
           md-menu-item
@@ -34,7 +34,7 @@ md-content.chat-controller.ng-cloak(flex, layout, layaout-padding)
             md-button(ng-click="chat.logout()")
               md-icon exit_to_app
               | ログアウト
-    md-content.flex.anim-slide-right(x-scrollbar)
+    md-content.anim-slide-right(layout="column", flex, x-scrollbar)
       md-subheader
         .md-layout.flex
           span.header-text チャンネル
@@ -42,8 +42,8 @@ md-content.chat-controller.ng-cloak(flex, layout, layaout-padding)
           md-button.md-icon-button.md-accent(aria-label="channelAdd", ng-click="chat.openDialogNewChannel($event)")
             md-icon.add-channel add_circle_outline
       ul.nav-menu
-        li.md-layout(ng-repeat="channel in chat.channel.channels")
-          md-button.flex(ui-sref="channel.messages({channelName: channel.name})", ng-click="chat.close()")
+        li(layout, ng-repeat="channel in chat.channels")
+          md-button.flex(ui-sref="chat.channel({channelName: channel.name})", ng-click="chat.close()")
             span.channel-prefix #
             {{channel.name}}
-  ui-view.flex.md-layout-column.channel-view
+  ui-view.flex.md-layout-column.channel-view(md-swipe-left="chat.openSideNav()")

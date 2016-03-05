@@ -1,11 +1,15 @@
 import angular from 'angular';
 import Firebase from 'firebase';
 
-const ref = new Firebase("https://burning-heat-5254.firebaseio.com");
+const BASE_REFPATH = 'https://burning-heat-5254.firebaseio.com';
+const ref = new Firebase(BASE_REFPATH);
 
 class FirebaseManager {
-  constructor($firebaseAuth) {
+  constructor($firebaseAuth, $firebaseObject, $firebaseArray) {
+    // 認証オブジェクト
     this.auth = $firebaseAuth(ref);
+
+    // Google認証
     this.googleAuth = (cb, eCb) => {
       this.auth.$authWithOAuthPopup("google").then(function (authData) {
         cb(authData);
@@ -13,10 +17,17 @@ class FirebaseManager {
         eCb(error);
       });
     }
+
+    // データ
+    this.data = {
+      channels() {
+        return $firebaseArray(new Firebase(`${BASE_REFPATH}/channels`))
+      }
+    }
   }
 }
 
-FirebaseManager.$inject = ['$firebaseAuth'];
+FirebaseManager.$inject = ['$firebaseAuth', '$firebaseObject', '$firebaseArray'];
 
 export default angular.module('services.firebase', [])
   .service('firebase', FirebaseManager)

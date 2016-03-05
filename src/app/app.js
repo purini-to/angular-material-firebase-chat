@@ -30,8 +30,9 @@ import channel from './components/channel';
 import firebase from './services/firebase.service';
 
 //models
-import user from './models/user.model';
-import auth from './models/auth.model';
+import userModel from './models/user.model';
+import authModel from './models/auth.model';
+import channelModel from './models/channel.model';
 
 const MODULE_NAME = 'app';
 
@@ -51,8 +52,9 @@ angular.module(MODULE_NAME, [
   chat,
   channel,
   firebase,
-  user,
-  auth,
+  userModel,
+  authModel,
+  channelModel,
 ]).config(routing).run(run);
 
 export default MODULE_NAME;

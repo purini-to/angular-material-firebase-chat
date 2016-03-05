@@ -1,5 +1,6 @@
 export default class ChannelController {
-  constructor($rootScope, $mdSidenav, firebase, user) {
+  constructor($rootScope, $mdSidenav, firebase, user, channel) {
+    this.channel = channel.active;
     this.$mdSidenav = $mdSidenav;
     $rootScope.pageTitle = 'Channel';
   }
@@ -9,4 +10,4 @@ export default class ChannelController {
   }
 }
 
-ChannelController.$inject = ['$rootScope', '$mdSidenav', 'firebase', 'user'];
+ChannelController.$inject = ['$rootScope', '$mdSidenav', 'firebase', 'user', 'channel'];

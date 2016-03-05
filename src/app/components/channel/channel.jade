@@ -5,15 +5,19 @@ md-content.channel-controller.ng-cloak(flex, layout, layaout-padding, layout-ali
         md-icon.material-icons menu
       h2
         span.channel-prefix #
-        span {{vm.channel.channel.name}}
+        span {{channel.channel.name}}
+        small.hide-sm.description {{channel.channel.description}}
       span.flex
-      .tool-bittons
+      .tool-buttons.hide-sm
         md-button.md-icon-button(aria-label="personCount")
           md-icon person_outline
         md-button.md-icon-button(aria-label="search")
           md-icon search
         md-button.md-icon-button(aria-label="star")
           md-icon star_border
+        md-button.md-icon-button(aria-label="more")
+          md-icon more_vert
+      .tool-buttons.hide-gt-sm
         md-button.md-icon-button(aria-label="more")
           md-icon more_vert
     md-progress-linear.md-accent(md-mode="indeterminate", ng-show="vm.processing")
