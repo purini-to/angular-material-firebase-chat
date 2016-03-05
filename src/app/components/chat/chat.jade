@@ -2,25 +2,27 @@ md-content.chat-controller.ng-cloak(flex, layout, layaout-padding)
   md-sidenav.md-sidenav-left.md-whiteframe-z2.side-nav(md-component-id="sideNav", md-is-locked-open="$mdMedia('gt-md')", x-scrollbar)
     md-toolbar.profile.anim-slide-right
       md-menu.flex.md-layout
-        md-button.btn-profile(aria-label="profile", ng-click="chat.openProfileMenu($mdOpenMenu, $event)")
+        md-button.btn-profile(aria-label="profile", ng-click="chat.openProfileMenu($mdOpenMenu, $event)", layout)
           img(ng-src="{{chat.user.profileImageURL}}")
           span {{chat.user.displayName}}
+          span.flex
+          md-icon.material-icons expand_more
         md-menu-content(width="4")
           md-menu-item
-            md-button 
+            md-button
               md-icon home
               | ホーム
           md-menu-item
-            md-button 
+            md-button
               md-icon accessibility
               | プロフィール
           md-divider
           md-menu-item
-            md-button 
+            md-button
               md-icon settings
               | チーム設定
           md-menu-item
-            md-button(ng-click="main.openDialogInvitation($event)") 
+            md-button(ng-click="main.openDialogInvitation($event)")
               md-icon redeem
               | 招待
           md-menu-item

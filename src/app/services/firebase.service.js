@@ -1,7 +1,7 @@
 import angular from 'angular';
 import Firebase from 'firebase';
 
-const ref = new Firebase("https://radiant-torch-9329.firebaseio.com");
+const ref = new Firebase("https://burning-heat-5254.firebaseio.com");
 
 class FirebaseManager {
   constructor($firebaseAuth) {
