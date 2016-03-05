@@ -32,7 +32,7 @@ export default class LoginController {
         this.$mdToast.simple()
         .textContent('Google認証に失敗しました')
         .position('bottom right')
-        .hideDelay(3000)
+        .hideDelay(6000)
       );
     });
   }
