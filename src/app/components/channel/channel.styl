@@ -13,10 +13,13 @@
   .message-container
     overflow auto
     .message
-      min-height auto
+      min-height 0
+      .md-list-item-text
+        margin-bottom 0
       .text
         white-space: pre;
-        display: inline-table;
+        line-height 0
+        margin-bottom 0
         p
           color: rgba(0,0,0,0.87);
       .md-avatar
@@ -28,12 +31,13 @@
       &.continue
         margin-top 8px
     .continuation
-      display: inline-table;
+      display: block;
       height auto
-      margin-top 0 !important
+      margin-top 2px !important
       .timestamp
         vertical-align: top;
         line-height: inherit;
+        font-size: 12px;
     .display-name
       font-weight bold
       color rgba(0,0,0,0.87)
@@ -74,3 +78,6 @@
         border-left-style solid
         &:focus
           outline none !important
+  .markdown-body
+    ul,ol
+      line-height: 1;

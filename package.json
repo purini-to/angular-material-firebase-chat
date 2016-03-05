@@ -36,6 +36,7 @@
     "firebase": "^2.4.1",
     "github-markdown-css": "^2.2.1",
     "lodash": "^4.6.1",
+    "normalize.css": "^3.0.3",
     "restangular": "^1.5.2"
   },
   "devDependencies": {

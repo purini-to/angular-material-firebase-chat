@@ -1,3 +1,4 @@
+import 'normalize.css/normalize.css';
 import 'angular-material/angular-material.min.css'
 import 'angular-ui-router-anim-in-out/css/anim-in-out.css';
 import 'github-markdown-css/github-markdown.css';
