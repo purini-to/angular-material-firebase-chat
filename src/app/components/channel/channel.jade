@@ -1,5 +1,5 @@
-md-content.channel-controller.ng-cloak(flex, layout, layaout-padding, layout-align="center")
-  md-toolbar.channel-title.md-whiteframe-10dp.anim-slide-below-fade.md-hue-2
+md-content.channel-controller.ng-cloak(layout="column", layaout-padding, layout-align="center")
+  md-toolbar.channel-title.md-whiteframe-2dp.anim-slide-below-fade.md-hue-2(md-scroll-shrink)
     .md-toolbar-tools
       md-button.hide-gt-md.md-icon-button(aria-label="showSideNav", ng-click="channel.toggleSideNavOpen()")
         md-icon.material-icons menu
@@ -20,5 +20,30 @@ md-content.channel-controller.ng-cloak(flex, layout, layaout-padding, layout-ali
       .tool-buttons.hide-gt-xs
         md-button.md-icon-button(aria-label="more")
           md-icon more_vert
-    md-progress-linear.md-accent(md-mode="indeterminate", ng-show="vm.processing")
-    md-content.md-layout-column.flex
+  .flex(layout="column")
+    md-list.message-container.flex
+      md-list-item.message.md-2-line(ng-repeat="message in channel.messages",
+      ng-init="continue=channel.isContinuation($index); hovering=false;",
+      ng-mouseenter="hovering=true" ng-mouseleave="hovering=false")
+        img.md-avatar(ng-if="!continue", ng-src="{{channel.user.profileImageURL}}", ng-class="{'no-hover': !hovering}")
+        .md-avatar.continuation(ng-if="continue", ng-class="{'hidden': !hovering}")
+          span.timestamp {{message.editedAt | date:'HH:mm'}}
+            md-tooltip(md-direction="top")
+              strong {{::message.editedAt | date:'yyyy/MM/dd HH:mm:ss'}}
+        .md-list-item-text(layout="column", ng-class="{'continue': !continue}")
+          p(ng-if="!continue")
+            span.display-name {{channel.user.displayName}}
+            span.timestamp {{message.editedAt | date:'HH:mm'}}
+              md-tooltip(md-direction="top")
+                strong {{::message.editedAt | date:'yyyy/MM/dd HH:mm:ss'}}
+          article.text.markdown-body(marked="message.text")
+  .channel-footer
+    form.message-form.layout-align-center(name="messageForm", novalidate, layout,
+    ng-class="{focus: channel.isInputMessageFocus}")
+      div(layout)
+        md-button.launch.flex.md-accent.md-hue-2(aria-label="launch", type="button")
+          md-icon.medium launch
+      div.flex(layout)
+        textarea.text-message.flex(msd-elastic, required, press-enter="channel.addMessage()",
+        ng-focus="channel.isInputMessageFocus=true", ng-blur="channel.isInputMessageFocus=false",
+        rows="1" spellcheck="false", ng-model="channel.message.text")

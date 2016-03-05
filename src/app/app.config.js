@@ -1,4 +1,4 @@
-export default function routing($urlRouterProvider, $locationProvider, $mdThemingProvider) {
+export default function routing($urlRouterProvider, $locationProvider, $mdThemingProvider, markedProvider) {
   $urlRouterProvider.otherwise('/');
 
   $mdThemingProvider.theme('default')
@@ -10,6 +10,10 @@ export default function routing($urlRouterProvider, $locationProvider, $mdThemin
     .primaryPalette('blue-grey')
     .accentPalette('lime')
     .warnPalette('blue', {'default': '600'});
+
+  markedProvider.setOptions({
+    sanitize: true
+  });
 }
 
-routing.$inject = ['$urlRouterProvider', '$locationProvider', '$mdThemingProvider'];
+routing.$inject = ['$urlRouterProvider', '$locationProvider', '$mdThemingProvider', 'markedProvider'];

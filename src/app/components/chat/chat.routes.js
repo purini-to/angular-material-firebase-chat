@@ -24,6 +24,22 @@ export default function routes($stateProvider) {
             auth.auth.accessToken = data.google.accessToken;
           });
         }],
+        "users": ["firebase", "user", (firebase, user) => {
+          return new Promise(resolve => {
+            firebase.data.users().$loaded((users) => {
+              user.users = users;
+              let my = user.users.find(u => user.user.id === u.id);
+              if (my) {
+                user.user = my;
+              } else {
+                user.users.$add(user.user, u => {
+                  user.user.$id = u.$id;
+                });
+              }
+              resolve(users);
+            });
+          });
+        }],
         "channels": ["firebase", "channel", (firebase, channel) => {
           channel.channels = firebase.data.channels();
           return channel.channels;

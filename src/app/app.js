@@ -1,5 +1,6 @@
 import 'angular-material/angular-material.min.css'
 import 'angular-ui-router-anim-in-out/css/anim-in-out.css';
+import 'github-markdown-css/github-markdown.css';
 import './app.styl';
 
 import 'lodash';
@@ -16,6 +17,8 @@ import 'restangular';
 import 'angular-cookie';
 import 'angularfire';
 import 'angular-ui-router-anim-in-out';
+import 'angular-elastic';
+import 'angular-marked';
 
 // config
 import routing from './app.config';
@@ -25,6 +28,9 @@ import run from './app.run';
 import login from './components/login';
 import chat from './components/chat';
 import channel from './components/channel';
+
+// directives
+import pressEnter from './directives/pressEnter.directive';
 
 // services
 import firebase from './services/firebase.service';
@@ -48,9 +54,12 @@ angular.module(MODULE_NAME, [
   'validation.match',
   'firebase',
   'anim-in-out',
+  'monospaced.elastic',
+  'hc.marked',
   login,
   chat,
   channel,
+  pressEnter,
   firebase,
   userModel,
   authModel,

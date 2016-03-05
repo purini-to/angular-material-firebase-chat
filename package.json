@@ -24,6 +24,8 @@
     "angular-animate": "^1.5.0",
     "angular-aria": "^1.5.0",
     "angular-cookie": "^4.1.0",
+    "angular-elastic": "^2.5.1",
+    "angular-marked": "^1.0.1",
     "angular-material": "^1.0.6",
     "angular-messages": "^1.5.0",
     "angular-resource": "^1.5.0",
@@ -32,6 +34,7 @@
     "angular-validation-match": "^1.7.1",
     "angularfire": "^1.1.4",
     "firebase": "^2.4.1",
+    "github-markdown-css": "^2.2.1",
     "lodash": "^4.6.1",
     "restangular": "^1.5.2"
   },

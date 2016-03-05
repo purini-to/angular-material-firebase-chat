@@ -20,8 +20,14 @@ class FirebaseManager {
 
     // データ
     this.data = {
+      users() {
+        return $firebaseArray(new Firebase(`${BASE_REFPATH}/users`));
+      },
       channels() {
-        return $firebaseArray(new Firebase(`${BASE_REFPATH}/channels`))
+        return $firebaseArray(new Firebase(`${BASE_REFPATH}/channels`));
+      },
+      messages(channelId) {
+        return $firebaseArray(new Firebase(`${BASE_REFPATH}/messages/${channelId}`));
       }
     }
   }

@@ -10,3 +10,67 @@
       margin: 0 8px;
       font-size: 0.6em;
       color: rgba(255,255,255,0.9);
+  .message-container
+    overflow auto
+    .message
+      min-height auto
+      .text
+        white-space: pre;
+        display: inline-table;
+        p
+          color: rgba(0,0,0,0.87);
+      .md-avatar
+        margin-top 8px
+        &.no-hover
+          opacity 0.8
+    .md-list-item-text
+      margin-top 0
+      &.continue
+        margin-top 8px
+    .continuation
+      display: inline-table;
+      height auto
+      margin-top 0 !important
+      .timestamp
+        vertical-align: top;
+        line-height: inherit;
+    .display-name
+      font-weight bold
+      color rgba(0,0,0,0.87)
+    .timestamp
+      color: rgba(0,0,0,0.54);
+      margin-left 8px
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: .010em;
+      line-height: 1.6em;
+      cursor: pointer;
+      &:hover
+        text-decoration: underline;
+  .channel-footer
+    background-color #fff
+    padding 8px 16px
+    .message-form
+      border-width 3px
+      border-style solid
+      border-color rgba(0,0,0,.18)
+      border-radius 8px
+      &.focus
+        border-color rgb(0,188,212)
+        .text-message
+          border-color rgb(0,188,212)
+      .md-button.launch
+        min-width 36px
+        margin 0
+        border-radius 0
+      .text-message
+        font-size 1.2em
+        margin-right 8px
+        padding 8px
+        border-width 3px
+        resize none
+        border-color rgba(0,0,0,.18)
+        border-style none
+        border-left-style solid
+        &:focus
+          outline none !important
