@@ -44,6 +44,10 @@ md-content.channel-controller.ng-cloak(layout="column", layaout-padding, layout-
         md-button.launch.flex.md-accent.md-hue-2(aria-label="launch", type="button")
           md-icon.medium launch
       div.flex(layout)
-        textarea.text-message.flex(msd-elastic, required, press-enter="channel.addMessage()",
+        textarea.text-message.flex(msd-elastic, required,
+        press-enter="channel.addMessage()", press-enter-media="gt-sm",
         ng-focus="channel.isInputMessageFocus=true", ng-blur="channel.isInputMessageFocus=false",
         rows="1" spellcheck="false", ng-model="channel.message.text")
+      div(layout, ng-hide="channel.$mdMedia('gt-sm')")
+        md-button.launch.flex.md-accent.md-hue-2(aria-label="launch", type="button", ng-click="channel.addMessage()")
+          md-icon.medium send

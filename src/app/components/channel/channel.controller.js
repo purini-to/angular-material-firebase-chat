@@ -1,7 +1,7 @@
 import Firebase from 'firebase';
 
 export default class ChannelController {
-  constructor($rootScope, $mdSidenav, firebase, user, channel) {
+  constructor($rootScope, $mdSidenav, $mdMedia, firebase, user, channel) {
     this.channel = channel.active;
     this.user = user.user;
     this.messages = firebase.data.messages(channel.active.$id);
@@ -13,6 +13,7 @@ export default class ChannelController {
     }
     this.isInputMessageFocus = false;
     this.$mdSidenav = $mdSidenav;
+    this.$mdMedia = $mdMedia;
     $rootScope.pageTitle = this.channel.name;
   }
 
@@ -41,4 +42,4 @@ export default class ChannelController {
   }
 }
 
-ChannelController.$inject = ['$rootScope', '$mdSidenav', 'firebase', 'user', 'channel'];
+ChannelController.$inject = ['$rootScope', '$mdSidenav', '$mdMedia', 'firebase', 'user', 'channel'];
