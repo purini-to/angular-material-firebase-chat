@@ -46,4 +46,4 @@ md-content.chat-controller.ng-cloak(flex, layout, layaout-padding)
           md-button.flex(ui-sref="chat.channel({channelName: channel.name})", ng-click="chat.close()")
             span.channel-prefix #
             {{channel.name}}
-  ui-view.flex.md-layout-column.channel-view(md-swipe-left="chat.openSideNav()")
+  ui-view.flex.md-layout-column.channel-view(md-swipe-right="chat.openSideNav()")

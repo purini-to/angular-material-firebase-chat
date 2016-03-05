@@ -26,7 +26,7 @@ export default class LoginController {
       this.auth.auth.expires = data.expires;
       this.auth.auth.token = data.token;
       this.auth.auth.accessToken = data.google.accessToken;
-      this.$state.go('chat.channel', {channelNam: 'general'});
+      this.$state.go('chat.channel', {channelName: 'general'});
     }, error => {
       this.$mdToast.show(
         this.$mdToast.simple()

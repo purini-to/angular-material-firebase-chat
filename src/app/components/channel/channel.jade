@@ -8,7 +8,7 @@ md-content.channel-controller.ng-cloak(flex, layout, layaout-padding, layout-ali
         span {{channel.channel.name}}
         small.hide-sm.description {{channel.channel.description}}
       span.flex
-      .tool-buttons.hide-sm
+      .tool-buttons.hide-xs
         md-button.md-icon-button(aria-label="personCount")
           md-icon person_outline
         md-button.md-icon-button(aria-label="search")
@@ -17,7 +17,7 @@ md-content.channel-controller.ng-cloak(flex, layout, layaout-padding, layout-ali
           md-icon star_border
         md-button.md-icon-button(aria-label="more")
           md-icon more_vert
-      .tool-buttons.hide-gt-sm
+      .tool-buttons.hide-gt-xs
         md-button.md-icon-button(aria-label="more")
           md-icon more_vert
     md-progress-linear.md-accent(md-mode="indeterminate", ng-show="vm.processing")
