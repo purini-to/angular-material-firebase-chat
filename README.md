@@ -1,6 +1,6 @@
 # angular-material-firebase-chat
 
-![image](https://github.com/purini-to/angular-material-firebase-chat/doc/image/appImage.gif)
+![image](https://raw.githubusercontent.com/purini-to/angular-material-firebase-chat/master/doc/img/appImage.gif)
 
 Chat, such as the slack using the material design
 Template for Angular using Webpack and Firebase.
