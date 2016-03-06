@@ -2,7 +2,7 @@
 
 ![image](https://raw.githubusercontent.com/purini-to/angular-material-firebase-chat/master/doc/img/appImage.gif)
 
-Chat, such as the slack using the material design
+Chat, such as the [Slack](https://slack.com/) using the material design
 Template for Angular using Webpack and Firebase.
 
 [Demo](https://burning-heat-5254.firebaseapp.com/#/) is here.
