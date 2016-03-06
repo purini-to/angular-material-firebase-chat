@@ -21,6 +21,8 @@ This workflow serves as a starting point for building Angular 1.x applications u
 >Warning: Make sure you're using the latest version of Node.js and NPM
 
 ### Quick start
+It is necessary to set the Google authentication  
+https://www.firebase.com/docs/web/guide/login/google.html
 
 ```bash
 # clone repo
