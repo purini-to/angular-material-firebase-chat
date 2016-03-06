@@ -5,6 +5,8 @@
 Chat, such as the slack using the material design
 Template for Angular using Webpack and Firebase.
 
+[Demo](https://burning-heat-5254.firebaseapp.com/#/) is here.
+
 This workflow serves as a starting point for building Angular 1.x applications using Webpack. Should be noted that apart from the pre-installed angular package, this workflow is pretty much generic.
 
 * Heavily commented webpack configuration with reasonable defaults.
