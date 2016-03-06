@@ -42,6 +42,18 @@ export default function routes($stateProvider) {
         }],
         "channels": ["firebase", "channel", (firebase, channel) => {
           channel.channels = firebase.data.channels();
+          channel.channels.$loaded(channels => {
+            if (!channels || channels.length === 0) {
+              channel.channels.$add({
+                name: 'general',
+                description: '業務連絡'
+              });
+              channel.channels.$add({
+                name: 'random',
+                description: '雑談'
+              });
+            }
+          });
           return channel.channels;
         }]
       }
