@@ -1,7 +1,7 @@
 {
   "name": "angular-webpack-workflow",
-  "version": "1.0.0",
-  "description": "A workflow for Angular made with Webpack",
+  "version": "0.0.1",
+  "description": "Chat, such as the slack using the material design",
   "scripts": {
     "build": "rimraf dist && webpack --bail --progress --profile",
     "server": "webpack-dev-server --history-api-fallback --inline --progress --port 80",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Foxandxss/angular-webpack-workflow.git"
+    "url": "https://github.com/purini-to/angular-material-firebase-chat"
   },
   "author": "Jesus Rodriguez",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Foxandxss/angular-webpack-workflow/issues"
+    "url": "https://github.com/purini-to/angular-material-firebase-chat/issues"
   },
-  "homepage": "https://github.com/Foxandxss/angular-webpack-workflow",
+  "homepage": "https://github.com/purini-to/angular-material-firebase-chat",
   "dependencies": {
     "angular": "^1.5.0",
     "angular-animate": "^1.5.0",

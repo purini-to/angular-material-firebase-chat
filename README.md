@@ -1,5 +1,7 @@
 # angular-material-firebase-chat
 
+![image](https://github.com/purini-to/angular-material-firebase-chat/doc/image/appImage.gif)
+
 Chat, such as the slack using the material design
 Template for Angular using Webpack and Firebase.
 
@@ -84,6 +86,9 @@ It will start a local server using `webpack-dev-server` which will watch, build 
 
 * single run: `npm test`
 * live mode (TDD style): `npm run test-watch`
+
+## Version
+  0.0.1
 
 # License
 
