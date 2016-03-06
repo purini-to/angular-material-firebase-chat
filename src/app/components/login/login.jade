@@ -6,7 +6,7 @@ md-content.login-controller.ng-cloak(flex, layout, layaout-padding, layout-align
         form(layout=('column'), flex, name="loginForm", novalidate)
           md-input-container(flex)
             label メールアドレス
-            input(ng-model="login.account.email", name="email", required)
+            input(ng-model="login.account.email", name="email", focus-me="!loginForm.$submited", required)
           md-input-container(flex)
             label パスワード
             input(ng-model="login.account.password", type="password", name="password", required)

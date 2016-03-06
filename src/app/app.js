@@ -20,6 +20,7 @@ import 'angularfire';
 import 'angular-ui-router-anim-in-out';
 import 'angular-elastic';
 import 'angular-marked';
+import 'ng-fx';
 
 // config
 import routing from './app.config';
@@ -32,6 +33,7 @@ import channel from './components/channel';
 
 // directives
 import pressEnter from './directives/pressEnter.directive';
+import focusMe from './directives/focusMe.directive';
 
 // services
 import firebase from './services/firebase.service';
@@ -57,10 +59,12 @@ angular.module(MODULE_NAME, [
   'anim-in-out',
   'monospaced.elastic',
   'hc.marked',
+  'ng-fx',
   login,
   chat,
   channel,
   pressEnter,
+  focusMe,
   firebase,
   userModel,
   authModel,

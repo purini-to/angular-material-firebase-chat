@@ -1,4 +1,4 @@
-md-content.channel-controller.ng-cloak(layout="column", layaout-padding, layout-align="center")
+md-content.channel-controller.ng-cloak.flex(layout="column", layaout-padding, layout-align="center")
   md-toolbar.channel-title.md-whiteframe-2dp.anim-slide-below-fade.md-hue-2(md-scroll-shrink)
     .md-toolbar-tools
       md-button.hide-gt-md.md-icon-button(aria-label="showSideNav", ng-click="channel.toggleSideNavOpen()")
@@ -20,9 +20,9 @@ md-content.channel-controller.ng-cloak(layout="column", layaout-padding, layout-
       .tool-buttons.hide-gt-xs
         md-button.md-icon-button(aria-label="more")
           md-icon more_vert
-  .flex(layout="column")
+  .flex.anim-slide-below-fade(layout="column")
     md-list.message-container.flex
-      md-list-item.message.md-2-line(ng-repeat="message in channel.messages",
+      md-list-item.message.md-2-line.fx-fade-down(ng-repeat="message in channel.messages",
       ng-init="continue=channel.isContinuation($index); hovering=false;",
       ng-mouseenter="hovering=true" ng-mouseleave="hovering=false")
         img.md-avatar(ng-if="!continue", ng-src="{{channel.user.profileImageURL}}", ng-class="{'no-hover': !hovering}")
@@ -37,17 +37,23 @@ md-content.channel-controller.ng-cloak(layout="column", layaout-padding, layout-
               md-tooltip(md-direction="top")
                 strong {{::message.editedAt | date:'yyyy/MM/dd HH:mm:ss'}}
           article.text.markdown-body(marked="message.text")
-  .channel-footer
+  .channel-footer.anim-slide-below-fade
+    .typing-container
+      span(ng-repeat="typing in channel.channel.typing | filter:'!'+channel.user.$id")
+        span(ng-show="$first") 入力中:
+        span {{channel.getUser(typing).displayName}}
     form.message-form.layout-align-center(name="messageForm", novalidate, layout,
     ng-class="{focus: channel.isInputMessageFocus}")
       div(layout)
         md-button.launch.flex.md-accent.md-hue-2(aria-label="launch", type="button")
           md-icon.medium launch
-      div.flex(layout)
+      .flex(layout)
         textarea.text-message.flex(msd-elastic, required,
         press-enter="channel.addMessage()", press-enter-media="gt-sm",
         ng-focus="channel.isInputMessageFocus=true", ng-blur="channel.isInputMessageFocus=false",
-        rows="1" spellcheck="false", ng-model="channel.message.text")
-      div(layout, ng-hide="channel.$mdMedia('gt-sm')")
+        rows="1" spellcheck="false", ng-model="channel.message.text",
+        focus-me="channel.isInputMessageFocus",
+        ng-keyup="channel.addTypingUser()")
+      div(layout, ng-show="channel.showSendBtn()")
         md-button.launch.flex.md-accent.md-hue-2(aria-label="launch", type="button", ng-click="channel.addMessage()")
           md-icon.medium send

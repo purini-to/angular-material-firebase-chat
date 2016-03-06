@@ -1,9 +1,11 @@
 import Firebase from 'firebase';
 
 export default class ChannelController {
-  constructor($rootScope, $mdSidenav, $mdMedia, firebase, user, channel) {
+  constructor($rootScope, $timeout, $mdSidenav, $mdMedia, firebase, user, channel) {
     this.channel = channel.active;
+    this.channels = channel.channels;
     this.user = user.user;
+    this.users = user.users;
     this.messages = firebase.data.messages(channel.active.$id);
     this.message = {
       text: '',
@@ -11,14 +13,20 @@ export default class ChannelController {
       userId: user.user.$id,
       editedAt: Firebase.ServerValue.TIMESTAMP
     }
-    this.isInputMessageFocus = false;
+    this.isInputMessageFocus = $mdMedia('gt-sm');
     this.$mdSidenav = $mdSidenav;
     this.$mdMedia = $mdMedia;
+    this.$timeout = $timeout;
+    this.typingPromise = null;
     $rootScope.pageTitle = this.channel.name;
+    this.stopTyping(0);
   }
 
   addMessage() {
-    if (this.message.text) {
+    let text = (this.message.text) ? this.message.text.trim() : '';
+    if (text) {
+      this.stopTyping(0);
+      this.message.text = text;
       this.messages.$add(this.message);
       this.message.text = '';
     }
@@ -40,6 +48,33 @@ export default class ChannelController {
     var diff = (dateL - dateLp) / (1000 * 60);
     return l === lp && diff < 5;
   }
+
+  showSendBtn() {
+    let text = (this.message.text) ? this.message.text.trim() : '';
+    return !this.$mdMedia('gt-sm') && text !== '';
+  }
+
+  addTypingUser() {
+    if (!this.channel.typing) this.channel.typing = [];
+    if (this.channel.typing.indexOf(this.user.$id) > -1) return this.stopTyping(5000);
+    this.channel.typing.push(this.user.$id);
+    this.channels.$save(this.channel).then(() => this.stopTyping(5000));
+  }
+
+  stopTyping(deley) {
+    if (this.typingPromise) this.$timeout.cancel(this.typingPromise);
+    this.typingPromise = this.$timeout(() => {
+      this.typingPromise = null;
+      let i = (this.channel.typing) ? this.channel.typing.indexOf(this.user.$id) : -1;
+      if (i === -1) return;
+      this.channel.typing.splice(i, 1);
+      this.channels.$save(this.channel);
+    }, deley);
+  }
+
+  getUser($id) {
+    return this.users.find(user => user.$id === $id);
+  }
 }
 
-ChannelController.$inject = ['$rootScope', '$mdSidenav', '$mdMedia', 'firebase', 'user', 'channel'];
+ChannelController.$inject = ['$rootScope', '$timeout', '$mdSidenav', '$mdMedia', 'firebase', 'user', 'channel'];
