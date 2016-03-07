@@ -11,15 +11,18 @@
       font-size: 0.6em;
       color: rgba(255,255,255,0.9);
   .message-container
-    overflow auto
+    overflow-y auto
+    overflow-x hidden
     .message
       min-height 0
       .md-list-item-text
         margin-bottom 0
       .text
-        white-space: pre;
-        line-height 0
+        white-space: pre-wrap;
+        line-height 0.35
         margin-bottom 0
+        word-wrap: break-word;
+        word-break: break-word;
         p
           color: rgba(0,0,0,0.87);
       .md-avatar
@@ -33,7 +36,7 @@
     .continuation
       display: block;
       height auto
-      margin-top 2px !important
+      margin-top 3px !important
       .timestamp
         vertical-align: top;
         line-height: inherit;
@@ -53,7 +56,7 @@
         text-decoration: underline;
   .channel-footer
     background-color #fff
-    padding 8px 16px
+    padding: 8px 16px 16px 16px;
     .message-form
       border-width 3px
       border-style solid

@@ -20,8 +20,10 @@ md-content.channel-controller.ng-cloak.flex(layout="column", layaout-padding, la
       .tool-buttons.hide-gt-xs
         md-button.md-icon-button(aria-label="more")
           md-icon more_vert
-  .flex.anim-slide-below-fade(layout="column")
-    md-list.message-container.flex
+  .container(ng-show="channel.status.loading")
+    md-progress-linear.md-accent(md-mode="indeterminate")
+  .flex.message-container.anim-slide-below-fade(layout="column", scroll-glue="glued", when-scrolled="channel.loadMore()")
+    md-list.flex
       md-list-item.message.md-2-line.fx-fade-down(ng-repeat="message in channel.messages",
       ng-init="continue=channel.isContinuation($index); hovering=false;",
       ng-mouseenter="hovering=true" ng-mouseleave="hovering=false")

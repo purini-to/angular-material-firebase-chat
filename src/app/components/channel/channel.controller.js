@@ -1,25 +1,48 @@
 import Firebase from 'firebase';
 
 export default class ChannelController {
-  constructor($rootScope, $timeout, $mdSidenav, $mdMedia, firebase, user, channel) {
+  constructor($rootScope, $scope, $timeout, $mdSidenav, $mdMedia, firebase, user, channel) {
     this.channel = channel.active;
     this.channels = channel.channels;
     this.user = user.user;
     this.users = user.users;
-    this.messages = firebase.data.messages(channel.active.$id);
+    this.messages = [];
     this.message = {
       text: '',
       type: 1,
       userId: user.user.$id,
       editedAt: Firebase.ServerValue.TIMESTAMP
     }
+    this.status = {
+      loading: false,
+      loaded: false
+    }
+    this.ref = firebase.data.messages(channel.active.$id, 30);
+    this.ref.on('child_added', (snapshot, prevChildKey) => {
+      $timeout(() => {
+        let m = snapshot.val();
+        m.$id = snapshot.key();
+        this.messages.push(m);
+        $rootScope.glued = true;
+      })
+    });
+    this.firebase = firebase;
+    this.$rootScope = $rootScope;
+
     this.isInputMessageFocus = $mdMedia('gt-sm');
     this.$mdSidenav = $mdSidenav;
     this.$mdMedia = $mdMedia;
     this.$timeout = $timeout;
     this.typingPromise = null;
+
     $rootScope.pageTitle = this.channel.name;
     this.stopTyping(0);
+
+    $scope.$on('$destroy', () => {
+      this.messages = [];
+      this.ref.off();
+      this.ref = null;
+    });
   }
 
   addMessage() {
@@ -27,7 +50,7 @@ export default class ChannelController {
     if (text) {
       this.stopTyping(0);
       this.message.text = text;
-      this.messages.$add(this.message);
+      this.ref.ref().push().set(this.message);
       this.message.text = '';
     }
   }
@@ -75,6 +98,35 @@ export default class ChannelController {
   getUser($id) {
     return this.users.find(user => user.$id === $id);
   }
+
+  loadMore() {
+    return new Promise((resolve, reject) => {
+      if (this.status.loaded || this.status.loading || !this.messages || this.messages.length === 0) return reject();
+      this.status.loading = true;
+      let startMessage = this.messages[0];
+      let ref = this.firebase.data.moreMessages(this.channel.$id, 30, startMessage.$id);
+      ref.once('value').then(data => {
+        this.$timeout(() => {
+          let ms = [];
+          let exist = false;
+          data.forEach(mSnap => {
+            let m = mSnap.val();
+            if (exist || startMessage.editedAt === m.editedAt) return exist = true;
+            m.$id = mSnap.key();
+            ms.push(m);
+          });
+          ms.reverse();
+          for (let i = 0, len = ms.length; i < len; i++) {
+            let m = ms[i];
+            this.messages.unshift(m);
+          }
+          if (ms.length !== 30) this.status.loaded = true;
+          this.status.loading = false;
+          resolve();
+        });
+      });
+    });
+  }
 }
 
-ChannelController.$inject = ['$rootScope', '$timeout', '$mdSidenav', '$mdMedia', 'firebase', 'user', 'channel'];
+ChannelController.$inject = ['$rootScope', '$scope', '$timeout', '$mdSidenav', '$mdMedia', 'firebase', 'user', 'channel'];

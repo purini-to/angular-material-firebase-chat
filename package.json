@@ -33,6 +33,7 @@
     "angular-ui-router-anim-in-out": "^1.0.2",
     "angular-validation-match": "^1.7.1",
     "angularfire": "^1.1.4",
+    "angularjs-scroll-glue": "^2.0.4",
     "firebase": "^2.4.1",
     "github-markdown-css": "^2.2.1",
     "lodash": "^4.6.1",

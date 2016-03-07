@@ -21,6 +21,7 @@ import 'angular-ui-router-anim-in-out';
 import 'angular-elastic';
 import 'angular-marked';
 import 'ng-fx';
+import 'angularjs-scroll-glue';
 
 // config
 import routing from './app.config';
@@ -34,6 +35,7 @@ import channel from './components/channel';
 // directives
 import pressEnter from './directives/pressEnter.directive';
 import focusMe from './directives/focusMe.directive';
+import whenScrolled from './directives/whenScrolled.directive';
 
 // services
 import firebase from './services/firebase.service';
@@ -60,11 +62,13 @@ angular.module(MODULE_NAME, [
   'monospaced.elastic',
   'hc.marked',
   'ng-fx',
+  'luegg.directives',
   login,
   chat,
   channel,
   pressEnter,
   focusMe,
+  whenScrolled,
   firebase,
   userModel,
   authModel,
