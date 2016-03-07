@@ -1,6 +1,12 @@
 .chat-controller
   background-color #fefefe
   overflow hidden
+  img.md-avatar
+    width 36px
+    height 36px
+    vertical-align: middle
+    margin-right 8px
+    border-radius 50%
   md-sidenav.side-nav
     display flex
     width 240px
@@ -18,12 +24,6 @@
       padding: 6px 14px;
       md-icon
         color #fff
-      img
-        width 36px
-        height 36px
-        vertical-align: middle
-        margin-right 8px
-        border-radius 50%
       span
         letter-spacing: 0.1em
   md-content
@@ -59,12 +59,18 @@
     li
       margin 0
       padding 0
+      img.md-avatar
+        width 30px
+        height 30px
+        margin-left -8px
       .md-button
         font-size 1.1em
         margin 0
         padding-left 32px
         text-align left
         text-transform none
+        &.no-logged-in
+          opacity 0.3
       .channel-prefix
         color rgba(0,0,0,0.5)
   .channel-view

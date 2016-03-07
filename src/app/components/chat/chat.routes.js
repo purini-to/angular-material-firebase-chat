@@ -15,6 +15,7 @@ export default function routes($stateProvider) {
             user.user.id = data.google.id;
             user.user.displayName = data.google.displayName;
             user.user.profileImageURL = data.google.profileImageURL;
+            user.loggedIn = true;
 
             // 認証情報保存
             auth.auth.provider = data.provider;
