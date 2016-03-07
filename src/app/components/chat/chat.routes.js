@@ -31,12 +31,13 @@ export default function routes($stateProvider) {
               let my = user.users.find(u => user.user.id === u.id);
               if (my) {
                 user.user = my;
+                resolve(users);
               } else {
-                user.users.$add(user.user, u => {
-                  user.user.$id = u.$id;
+                user.users.$add(user.user).then(() => {
+                  user.user= user.users.find(u => user.user.id === u.id);
+                  resolve(users);
                 });
               }
-              resolve(users);
             });
           });
         }],
