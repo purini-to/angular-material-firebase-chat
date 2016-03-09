@@ -12,7 +12,7 @@ class FirebaseManager {
 
     // Google認証
     this.googleAuth = (cb, eCb) => {
-      this.auth.$authWithOAuthPopup("google").then(function (authData) {
+      this.auth.$authWithOAuthPopup("google", {scope: "email"}).then(function (authData) {
         cb(authData);
       }).catch(function (error) {
         eCb(error);

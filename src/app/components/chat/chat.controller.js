@@ -11,7 +11,8 @@ export default class ChatController {
     $rootScope.pageTitle = 'Chat';
 
     $scope.$on('$destroy', () => {
-      this.logout();
+      this.user.loggedIn = false;
+      this.users.$save(this.user);
     });
     $window.addEventListener('beforeunload', () => {
       this.logout();

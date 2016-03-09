@@ -19,6 +19,7 @@ export default class LoginController {
       this.user.user.id = data.google.id;
       this.user.user.displayName = data.google.displayName;
       this.user.user.profileImageURL = data.google.profileImageURL;
+      this.user.user.email = data.google.email;
 
       // 認証情報保存
       this.auth.auth.provider = data.provider;
@@ -34,7 +35,7 @@ export default class LoginController {
         .position('bottom right')
         .hideDelay(6000)
       );
-    });
+    }, {scope: "email"});
   }
 }
 

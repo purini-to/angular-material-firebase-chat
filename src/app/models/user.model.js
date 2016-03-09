@@ -6,7 +6,8 @@ class UserModel {
     this.user = {
       id: '',
       displayName: '',
-      profileImageURL: ''
+      profileImageURL: '',
+      email: ''
     }
   }
 }
