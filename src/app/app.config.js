@@ -12,7 +12,12 @@ export default function routing($urlRouterProvider, $locationProvider, $mdThemin
     .warnPalette('blue', {'default': '600'});
 
   markedProvider.setOptions({
-    sanitize: true
+    gfm: true,
+    tables: true,
+    sanitize: true,
+    highlight: function (code) {
+      return hljs.highlightAuto(code).value;
+    }
   });
 }
 
