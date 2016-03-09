@@ -27,7 +27,8 @@ md-content.channel-controller.ng-cloak.flex(layout="column", layaout-padding, la
       md-list-item.message.md-2-line.fx-fade-down(ng-repeat="message in channel.messages",
       ng-init="continue=channel.isContinuation($index); hovering=false;",
       ng-mouseenter="hovering=true" ng-mouseleave="hovering=false")
-        img.md-avatar(ng-if="!continue", ng-src="{{channel.user.profileImageURL}}", ng-class="{'no-hover': !hovering}")
+        img.md-avatar(ng-if="!continue", ng-init="sendUser=channel.getSendMessageUser(message)",
+        ng-src="{{sendUser.profileImageURL}}", ng-class="{'no-hover': !hovering}")
         .md-avatar.continuation(ng-if="continue", ng-class="{'hidden': !hovering}")
           span.timestamp {{message.editedAt | date:'HH:mm'}}
             md-tooltip(md-direction="top")

@@ -39,6 +39,7 @@ export default class ChannelController {
     this.stopTyping(0);
 
     $scope.$on('$destroy', () => {
+      this.stopTyping(0);
       this.messages = [];
       this.ref.off();
       this.ref = null;
@@ -97,6 +98,10 @@ export default class ChannelController {
 
   getUser($id) {
     return this.users.find(user => user.$id === $id);
+  }
+
+  getSendMessageUser(message) {
+    return this.users.find(u => u.$id === message.userId);
   }
 
   loadMore() {
