@@ -9,12 +9,26 @@ export default function routing($urlRouterProvider, $locationProvider, $mdThemin
   $mdThemingProvider.theme('sub')
     .primaryPalette('blue-grey')
     .accentPalette('lime')
-    .warnPalette('blue', {'default': '600'});
+    .warnPalette('blue', {
+      'default': '600'
+    });
+
+  markedProvider.setRenderer({
+    link: (href, title, text) => {
+      return "<a href='" + href + "'" + (title ? " title='" + title + "'" : '') + " target='_blank'>" + text + "</a>";
+    },
+    paragraph: text => {
+      var result = text.match(/(@.+)\s/g);
+      if (result && result.length > 0)
+        result.forEach(r => text = text.replace(r, `<a class="mention">${r}</a>`));
+      return text;
+    }
+  });
 
   markedProvider.setOptions({
     gfm: true,
     tables: true,
-    highlight: function (code) {
+    highlight: (code) => {
       return hljs.highlightAuto(code).value;
     }
   });

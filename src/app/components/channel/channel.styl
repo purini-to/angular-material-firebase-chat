@@ -19,12 +19,13 @@
         margin-bottom 0
       .text
         white-space: pre-wrap;
-        line-height 0.35
         margin-bottom 0
         word-wrap: break-word;
         word-break: break-word;
         p
           color: rgba(0,0,0,0.87);
+        .mention
+          color rgb(245,0,87);
       .md-avatar
         margin-top 8px
         &.no-hover
@@ -81,8 +82,6 @@
         border-left-style solid
         &:focus
           outline none !important
-        i.emoji
-          vertical-align: middle;
   .markdown-body
     ul,ol
       line-height: 1;
