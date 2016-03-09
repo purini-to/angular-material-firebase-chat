@@ -18,7 +18,7 @@ export default function routing($urlRouterProvider, $locationProvider, $mdThemin
       return "<a href='" + href + "'" + (title ? " title='" + title + "'" : '') + " target='_blank'>" + text + "</a>";
     },
     paragraph: text => {
-      var result = text.match(/(@.+)\s/g);
+      var result = text.match(/(@.+):{0,1}\s/g);
       if (result && result.length > 0)
         result.forEach(r => text = text.replace(r, `<a class="mention">${r}</a>`));
       return text;
