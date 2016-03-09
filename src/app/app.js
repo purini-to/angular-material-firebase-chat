@@ -2,6 +2,7 @@ import 'normalize.css/normalize.css';
 import 'angular-material/angular-material.min.css'
 import 'angular-ui-router-anim-in-out/css/anim-in-out.css';
 import 'github-markdown-css/github-markdown.css';
+import 'angular-emoji-filter/dist/emoji.min.css';
 import './app.styl';
 
 import 'lodash';
@@ -22,6 +23,7 @@ import 'angular-elastic';
 import 'angular-marked';
 import 'ng-fx';
 import 'angularjs-scroll-glue';
+import 'angular-emoji-filter/dist/emoji.min.js';
 
 // config
 import routing from './app.config';
@@ -63,6 +65,7 @@ angular.module(MODULE_NAME, [
   'hc.marked',
   'ng-fx',
   'luegg.directives',
+  'emoji',
   login,
   chat,
   channel,

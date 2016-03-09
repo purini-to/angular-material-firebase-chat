@@ -25,6 +25,7 @@
     "angular-aria": "^1.5.0",
     "angular-cookie": "^4.1.0",
     "angular-elastic": "^2.5.1",
+    "angular-emoji-filter": "git+https://github.com/globaldev/angular-emoji-filter.git",
     "angular-marked": "^1.0.1",
     "angular-material": "^1.0.6",
     "angular-messages": "^1.5.0",
