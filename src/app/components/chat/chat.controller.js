@@ -1,5 +1,7 @@
+import angular from 'angular';
+
 export default class ChatController {
-  constructor($rootScope, $scope, $window, $state, $mdSidenav, firebase, user, auth, channel) {
+  constructor($rootScope, $scope, $mdDialog, $mdMedia, $window, $state, $mdSidenav, firebase, user, auth, channel) {
     this.user = user.user;
     this.users = user.users;
     this.auth = auth.auth;
@@ -8,7 +10,11 @@ export default class ChatController {
     this.firebase = firebase;
     this.$state = $state;
     this.$mdSidenav = $mdSidenav;
+    this.$mdDialog = $mdDialog;
+    this.$mdMedia = $mdMedia;
     $rootScope.pageTitle = 'Chat';
+
+    $scope.$watch(() => $mdMedia('xs') || $mdMedia('sm'), (wantsFullScreen) => this.customFullscreen = (wantsFullScreen === true));
 
     $scope.$on('$destroy', () => {
       this.user.loggedIn = false;
@@ -41,9 +47,21 @@ export default class ChatController {
     return this.$mdSidenav('sideNav').open();
   }
 
+  openCreateChannelDialog(ev) {
+    this.close();
+    this.$mdDialog.show({
+      controller: 'CreateChannelController',
+      controllerAs: 'dChannel',
+      parent: angular.element(document.body),
+      template: require('../dialogs/createChannel/createChannel.jade')(),
+      targetEvent: ev,
+      clickOutsideToClose: false,
+    });
+  }
+
   close() {
     return this.$mdSidenav('sideNav').close();
   }
 }
 
-ChatController.$inject = ['$rootScope', '$scope', '$window', '$state', '$mdSidenav', 'firebase', 'user', 'auth', 'channel'];
+ChatController.$inject = ['$rootScope', '$scope', '$mdDialog', '$mdMedia', '$window', '$state', '$mdSidenav', 'firebase', 'user', 'auth', 'channel'];

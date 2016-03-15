@@ -33,6 +33,7 @@ import run from './app.run';
 import login from './components/login';
 import chat from './components/chat';
 import channel from './components/channel';
+import createChannel from './components/dialogs/createChannel';
 
 // directives
 import pressEnter from './directives/pressEnter.directive';
@@ -76,6 +77,7 @@ angular.module(MODULE_NAME, [
   userModel,
   authModel,
   channelModel,
+  createChannel,
 ]).config(routing).run(run);
 
 export default MODULE_NAME;

@@ -1,0 +1,25 @@
+md-dialog.createChannel-controller(ng-cloak, aria-label="createChannel")
+  form.errorsAdvanced(ng-submit="createChannelForm.$invalid ? null : dChannel.save()",name="createChannelForm", novalidate)
+    md-toolbar.md-hue-2
+      .md-toolbar-tools
+        h2 チャンネル作成
+        span.flex
+        md-button.md-icon-button(ng-click="dChannel.closeDialog()")
+          md-icon.material-icons close
+    md-dialog-content
+      .md-dialog-content(layout=('column'))
+          md-input-container(flex)
+            label.md-required チャンネル名
+              span.required *
+            input(ng-model="dChannel.channel.name", name="name", focus-me="!createChannelForm.$submited", type="text", inputmode="verbatim",
+            required, maxlength="10", ng-pattern="/^[a-z0-9-_]+$/")
+            div(ng-messages="createChannelForm.name.$error")
+              div(ng-message="required") 半角英数字で入力してください。記号は _ - のみ使用可能です。
+              div(ng-message="md-maxlength") 10文字以内で入力してください。
+              div(ng-message="pattern") 半角英数字で入力してください。記号は _ - のみ使用可能です。
+          md-input-container(flex)
+            label 目的
+            input(ng-model="dChannel.channel.description", name="description", maxlength="10")
+    md-dialog-actions(layout="row")
+      md-button.md-accent.flex-sm.flex-xs(type="submit")
+        チャンネル作成

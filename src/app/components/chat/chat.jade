@@ -39,7 +39,7 @@ md-content.chat-controller.ng-cloak(flex, layout, layaout-padding, md-swipe-left
         .md-layout.flex
           span.header-text チャンネル
           span.flex
-          md-button.md-icon-button.md-accent(aria-label="channelAdd", ng-click="chat.openDialogNewChannel($event)")
+          md-button.md-icon-button.md-accent(aria-label="channelAdd", ng-click="chat.openCreateChannelDialog($event)")
             md-icon.add-channel add_circle_outline
       ul.nav-menu
         li(layout, ng-repeat="channel in chat.channels")
