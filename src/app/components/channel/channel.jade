@@ -25,17 +25,16 @@ md-content.channel-controller.ng-cloak.flex(layout="column", layaout-padding, la
   .flex.message-container.anim-slide-below-fade(layout="column", scroll-glue="glued", when-scrolled="channel.loadMore()")
     md-list.flex
       md-list-item.message.md-2-line.fx-fade-down(ng-repeat="message in channel.messages",
-      ng-init="continue=channel.isContinuation($index); hovering=false;",
+      ng-init="continue=channel.isContinuation($index); hovering=false; sendUser=channel.getSendMessageUser(message);",
       ng-mouseenter="hovering=true" ng-mouseleave="hovering=false")
-        img.md-avatar(ng-if="!continue", ng-init="sendUser=channel.getSendMessageUser(message)",
-        ng-src="{{sendUser.profileImageURL}}", ng-class="{'no-hover': !hovering}")
+        img.md-avatar(ng-if="!continue", ng-src="{{sendUser.profileImageURL}}", ng-class="{'no-hover': !hovering}")
         .md-avatar.continuation(ng-if="continue", ng-class="{'hidden': !hovering}")
           span.timestamp {{message.editedAt | date:'HH:mm'}}
             md-tooltip(md-direction="top")
               strong {{::message.editedAt | date:'yyyy/MM/dd HH:mm:ss'}}
         .md-list-item-text(layout="column", ng-class="{'continue': !continue}")
           p(ng-if="!continue")
-            span.display-name {{channel.user.displayName}}
+            span.display-name {{sendUser.displayName}}
             span.timestamp {{message.editedAt | date:'HH:mm'}}
               md-tooltip(md-direction="top")
                 strong {{::message.editedAt | date:'yyyy/MM/dd HH:mm:ss'}}
