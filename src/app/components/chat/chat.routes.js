@@ -58,7 +58,7 @@ export default function routes($stateProvider) {
             }
           });
           return channel.channels;
-        }]
+        }],
       }
     });
 }

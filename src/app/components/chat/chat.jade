@@ -50,8 +50,6 @@ md-content.chat-controller.ng-cloak(flex, layout, layaout-padding, md-swipe-left
         .md-layout.flex
           span.header-text ユーザー
           span.flex
-          md-button.md-icon-button.md-accent(aria-label="directAdd", ng-click="chat.openDialogNewChannel($event)")
-            md-icon.add-channel add_circle_outline
       ul.nav-menu
         li(layout, ng-repeat="user in chat.users | filter:{$id: '!'+chat.user.$id}")
           md-button.flex(ng-click="chat.close()", ui-sref-active="md-primary", ng-class="{'no-logged-in': !user.loggedIn}")

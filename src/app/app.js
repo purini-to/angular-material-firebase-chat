@@ -42,6 +42,7 @@ import whenScrolled from './directives/whenScrolled.directive';
 
 // services
 import firebase from './services/firebase.service';
+import notification from './services/notification.service';
 
 //models
 import userModel from './models/user.model';
@@ -74,6 +75,7 @@ angular.module(MODULE_NAME, [
   focusMe,
   whenScrolled,
   firebase,
+  notification,
   userModel,
   authModel,
   channelModel,

@@ -35,10 +35,10 @@ class FirebaseManager {
         let r = ref.child(`messages/${channelId}`).endAt(null, end).limitToLast(limit+1);
         return r;
       },
-      messageOn(channelId, limit, start) {
-        let r = ref.child(`messages/${channelId}`).limitToLast(1);
+      newMessages(channelId, timestamp) {
+        let r = ref.child(`messages/${channelId}`).orderByChild('editedAt').startAt(timestamp).limitToLast(1);
         return r;
-      }
+      },
     }
   }
 }

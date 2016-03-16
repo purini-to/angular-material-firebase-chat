@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 export default class ChatController {
-  constructor($rootScope, $scope, $mdDialog, $mdMedia, $window, $state, $mdSidenav, firebase, user, auth, channel) {
+  constructor($rootScope, $scope, $mdDialog, $mdMedia, $window, $state, $mdSidenav, $timeout, firebase, user, auth, channel, notification) {
     this.user = user.user;
     this.users = user.users;
     this.auth = auth.auth;
@@ -26,6 +26,32 @@ export default class ChatController {
 
     this.user.loggedIn = true;
     this.users.$save(this.user);
+    notification.requestPermit();
+
+    var refs = [];
+
+    // チャンネルを監視して、変更があった場合は新しいメッセージのイベントリスナーを再定義する
+    $scope.$watch(() => {
+      return this.channels.toString();
+    },() => {
+      refs = refs.map((r) => {
+        r.off();
+        return;
+      });
+      let date = new Date() ;
+      // 現在のUNIX時間を取得する (ミリ秒単位)
+      var unixTimestamp = date.getTime() ;
+      this.channels.forEach((c) => {
+        let ref = firebase.data.newMessages(c.$id, unixTimestamp);
+        refs.push(ref);
+        ref.on('child_added', (snapshot, prevChildKey) => {
+          $timeout(() => {
+            let message = snapshot.val();
+            notification.show(`新しいメッセージを受信しました(#${c.name})`, {body: message.text});
+          })
+        });
+      });
+    });
   }
 
   openProfileMenu($mdOpenMenu, $event) {
@@ -64,4 +90,4 @@ export default class ChatController {
   }
 }
 
-ChatController.$inject = ['$rootScope', '$scope', '$mdDialog', '$mdMedia', '$window', '$state', '$mdSidenav', 'firebase', 'user', 'auth', 'channel'];
+ChatController.$inject = ['$rootScope', '$scope', '$mdDialog', '$mdMedia', '$window', '$state', '$mdSidenav', '$timeout', 'firebase', 'user', 'auth', 'channel', 'notification'];
