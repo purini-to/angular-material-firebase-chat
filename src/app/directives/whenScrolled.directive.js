@@ -6,7 +6,7 @@ function whenScrolled($timeout) {
       var raw = element[0];
 
       element.bind('scroll', function () {
-        if (raw.scrollTop <= 100) {
+        if (raw.scrollTop <= 30) {
           var sh = raw.scrollHeight
           scope.$apply(attrs.whenScrolled).then(function () {
             $timeout(function () {
