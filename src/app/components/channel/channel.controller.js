@@ -35,12 +35,14 @@ export default class ChannelController {
     this.$timeout = $timeout;
     this.typingPromise = null;
 
+    $rootScope.pageTitle = this.channel.name;
+
     if (this.channel.private) {
       let key = this.channel.name.replace(this.user.$id, '').replace('@', '');
       this.name = this.users.find(u => u.$id === key).displayName;
+      $rootScope.pageTitle = this.name;
     }
 
-    $rootScope.pageTitle = this.channel.name;
     this.stopTyping(0);
 
     $scope.$on('$destroy', () => {

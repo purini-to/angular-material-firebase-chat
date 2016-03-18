@@ -6,6 +6,8 @@ function channelFilter($mdMedia) {
   }
 }
 
+channelFilter.$inject = [];
+
 export default angular.module('filters.channelFilter', [])
   .filter('channelFilter', channelFilter)
   .name;
