@@ -3,10 +3,13 @@ md-content.channel-controller.ng-cloak.flex(layout="column", layaout-padding, la
     .md-toolbar-tools
       md-button.hide-gt-md.md-icon-button(aria-label="showSideNav", ng-click="channel.toggleSideNavOpen()")
         md-icon.material-icons menu
-      h2
+      h2(ng-if="!channel.channel.private")
         span.channel-prefix #
         span {{channel.channel.name}}
         small.hide-sm.description {{channel.channel.description}}
+      h2(ng-if="channel.channel.private")
+        span.channel-prefix @
+        span {{channel.name}}
       span.flex
       .tool-buttons.hide-xs
         md-button.md-icon-button(aria-label="personCount")

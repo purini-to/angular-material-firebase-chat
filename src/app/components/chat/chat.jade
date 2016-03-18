@@ -42,7 +42,7 @@ md-content.chat-controller.ng-cloak(flex, layout, layaout-padding, md-swipe-left
           md-button.md-icon-button.md-accent(aria-label="channelAdd", ng-click="chat.openCreateChannelDialog($event)")
             md-icon.add-channel add_circle_outline
       ul.nav-menu
-        li(layout, ng-repeat="channel in chat.channels")
+        li(layout, ng-repeat="channel in chat.channels | channelFilter")
           md-button.flex(ui-sref="chat.channel({channelName: channel.name})", ng-click="chat.close()", ui-sref-active="md-primary")
             span.channel-prefix #
             {{channel.name}}
@@ -52,7 +52,7 @@ md-content.chat-controller.ng-cloak(flex, layout, layaout-padding, md-swipe-left
           span.flex
       ul.nav-menu
         li(layout, ng-repeat="user in chat.users | filter:{$id: '!'+chat.user.$id}")
-          md-button.flex(ng-click="chat.close()", ui-sref-active="md-primary", ng-class="{'no-logged-in': !user.loggedIn}")
+          md-button.flex(ng-click="chat.goDirectChannel(user)", ui-sref-active="md-primary", ng-class="{'no-logged-in': !user.loggedIn}")
             img.md-avatar(ng-src="{{user.profileImageURL}}")
             {{user.displayName}}
   ui-view.flex.channel-view(layout="column", md-swipe-right="chat.openSideNav()", autoscroll="true")

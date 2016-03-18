@@ -33,25 +33,61 @@ export default class ChatController {
     // チャンネルを監視して、変更があった場合は新しいメッセージのイベントリスナーを再定義する
     $scope.$watch(() => {
       return this.channels.toString();
-    },() => {
+    }, () => {
       refs = refs.map((r) => {
         r.off();
         return;
       });
-      let date = new Date() ;
+      let date = new Date();
       // 現在のUNIX時間を取得する (ミリ秒単位)
-      var unixTimestamp = date.getTime() ;
+      var unixTimestamp = date.getTime();
       this.channels.forEach((c) => {
         let ref = firebase.data.newMessages(c.$id, unixTimestamp);
         refs.push(ref);
         ref.on('child_added', (snapshot, prevChildKey) => {
           $timeout(() => {
             let message = snapshot.val();
-            notification.show(`新しいメッセージを受信しました(#${c.name})`, {body: message.text});
+            let name = `#${c.name}`;
+            if (c.private) {
+              let key = c.name.replace(this.user.$id, '').replace('@', '');
+              name = `@${this.users.find(u => u.$id === key).displayName}`;
+            }
+            notification.show(`新しいメッセージを受信しました(${name})`, {
+              body: message.text
+            });
           })
         });
       });
     });
+  }
+
+  goDirectChannel(user) {
+    let dChannel = this.channels.find(c => {
+      if (!c.private || !c.invitee) return false;
+      let index = c.invitee.indexOf(this.user.$id);
+      let userIndex = c.invitee.indexOf(user.$id);
+      return index > -1 && userIndex > -1;
+    });
+    if (!dChannel) {
+      this.channels.$add({
+        name: `${this.user.$id}@${user.$id}`,
+        description: '',
+        private: true,
+        invitee: [this.user.$id, user.$id]
+      }).then((ref) => {
+        let c = this.channels[this.channels.$indexFor(ref.key())];
+        console.log(c);
+        this.$state.go('chat.channel', {
+          channelName: c.name,
+        });
+        this.close();
+      });
+    } else {
+      this.$state.go('chat.channel', {
+        channelName: dChannel.name,
+      });
+      this.close();
+    }
   }
 
   openProfileMenu($mdOpenMenu, $event) {

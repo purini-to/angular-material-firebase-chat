@@ -40,6 +40,9 @@ import pressEnter from './directives/pressEnter.directive';
 import focusMe from './directives/focusMe.directive';
 import whenScrolled from './directives/whenScrolled.directive';
 
+// filters
+import channelFilter from './filters/channel.filter';
+
 // services
 import firebase from './services/firebase.service';
 import notification from './services/notification.service';
@@ -74,6 +77,7 @@ angular.module(MODULE_NAME, [
   pressEnter,
   focusMe,
   whenScrolled,
+  channelFilter,
   firebase,
   notification,
   userModel,

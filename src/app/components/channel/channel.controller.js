@@ -1,7 +1,7 @@
 import Firebase from 'firebase';
 
 export default class ChannelController {
-  constructor($rootScope, $scope, $timeout, $mdSidenav, $mdMedia, firebase, user, channel) {
+  constructor($rootScope, $scope, $timeout, $mdSidenav, $mdMedia, $stateParams, firebase, user, channel) {
     this.channel = channel.active;
     this.channels = channel.channels;
     this.user = user.user;
@@ -35,14 +35,21 @@ export default class ChannelController {
     this.$timeout = $timeout;
     this.typingPromise = null;
 
+    if (this.channel.private) {
+      let key = this.channel.name.replace(this.user.$id, '').replace('@', '');
+      this.name = this.users.find(u => u.$id === key).displayName;
+    }
+
     $rootScope.pageTitle = this.channel.name;
     this.stopTyping(0);
 
     $scope.$on('$destroy', () => {
       this.stopTyping(0);
       this.messages = [];
-      this.ref.off();
-      this.ref = null;
+      if (this.ref) {
+        this.ref.off();
+        this.ref = null;
+      }
     });
   }
 
@@ -134,4 +141,4 @@ export default class ChannelController {
   }
 }
 
-ChannelController.$inject = ['$rootScope', '$scope', '$timeout', '$mdSidenav', '$mdMedia', 'firebase', 'user', 'channel'];
+ChannelController.$inject = ['$rootScope', '$scope', '$timeout', '$mdSidenav', '$mdMedia', '$stateParams', 'firebase', 'user', 'channel'];
