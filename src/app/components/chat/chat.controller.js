@@ -47,14 +47,16 @@ export default class ChatController {
         ref.on('child_added', (snapshot, prevChildKey) => {
           $timeout(() => {
             let message = snapshot.val();
-            let name = `#${c.name}`;
-            if (c.private) {
-              let key = c.name.replace(this.user.$id, '').replace('@', '');
-              name = `@${this.users.find(u => u.$id === key).displayName}`;
+            if (message.userId !== this.user.$id) {
+              let name = `#${c.name}`;
+              if (c.private) {
+                let key = c.name.replace(this.user.$id, '').replace('@', '');
+                name = `@${this.users.find(u => u.$id === key).displayName}`;
+              }
+              notification.show(`新しいメッセージを受信しました(${name})`, {
+                body: message.text
+              });
             }
-            notification.show(`新しいメッセージを受信しました(${name})`, {
-              body: message.text
-            });
           })
         });
       });
