@@ -26,6 +26,7 @@ export default function routing($urlRouterProvider, $locationProvider, $mdThemin
   });
 
   markedProvider.setOptions({
+    sanitize: true,
     gfm: true,
     tables: true,
     highlight: (code) => {

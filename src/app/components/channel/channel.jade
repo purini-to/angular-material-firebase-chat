@@ -41,7 +41,7 @@ md-content.channel-controller.ng-cloak.flex(layout="column", layaout-padding, la
             span.timestamp {{message.editedAt | date:'HH:mm'}}
               md-tooltip(md-direction="top")
                 strong {{::message.editedAt | date:'yyyy/MM/dd HH:mm:ss'}}
-          article.text.markdown-body(marked="message.text | emoji")
+          article.text.markdown-body(marked="message.text")
   .channel-footer.anim-slide-below-fade
     .typing-container
       span(ng-repeat="typing in channel.channel.typing | filter:'!'+channel.user.$id")
