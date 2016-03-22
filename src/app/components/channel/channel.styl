@@ -16,6 +16,7 @@
     padding-bottom 16px
     .message
       min-height 0
+      line-height normal
       .md-list-item-text
         margin-bottom 0
       .text
@@ -23,6 +24,7 @@
         margin-bottom 0
         word-wrap: break-word;
         word-break: break-word;
+        margin-bottom: 8px;
         p
           color: rgba(0,0,0,0.87);
         .mention
@@ -31,6 +33,8 @@
         margin-top 8px
         &.no-hover
           opacity 0.8
+    .message:hover
+      background-color rgba(0,0,0,.05)
     .md-list-item-text
       margin-top 0
       &.continue
@@ -38,7 +42,7 @@
     .continuation
       display: block;
       height auto
-      margin-top 3px !important
+      margin-top 8px !important
       .timestamp
         vertical-align: top;
         line-height: inherit;
