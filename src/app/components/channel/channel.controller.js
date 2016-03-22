@@ -58,9 +58,8 @@ export default class ChannelController {
   addMessage() {
     let text = (this.message.text) ? this.message.text.trim() : '';
     if (text) {
-      this.stopTyping(0);
       this.message.text = text;
-      this.ref.ref().push().set(this.message);
+      this.ref.ref().push().set(this.message, () => this.stopTyping(0));
       this.message.text = '';
     }
   }
